@@ -13,4 +13,3 @@ I will do this in C++
 |2016-05-29|Denis Jackman|01.00|Original Version |
 
 ## TODO
-* Add coverall 
