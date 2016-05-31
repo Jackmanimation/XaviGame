@@ -6,9 +6,16 @@ bool gDebugMode = false;
 
 int main (int argc, char* args[] )
 {
-    gDebugMode = true;
     ofstream logfile;
-    gDebugMode = true;
+    int i=1;
+    for (;i<argc;i++)
+    {
+        if (string(args[i])=="debug")
+        {
+            gDebugMode = true;
+        }
+    }
+
     if (gDebugMode)
     {
         // open a file in write mode.
@@ -21,12 +28,6 @@ int main (int argc, char* args[] )
       	logfile << " -- Game Version 1.0 (Test) -- " << endl;
 	    logfile << " --- Starting ---" << endl;
     }
-    int i=1;
-    for (;i<argc;i++)
-    {
-        cout << "Argument " << i << " Arg : " << args[i] << endl ;
-    }
-
 
 	cout << " --- Ending ---" << endl;
     if (gDebugMode)
