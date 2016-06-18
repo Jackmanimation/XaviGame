@@ -10,9 +10,16 @@ I will do this in C++
 
 # Links 
 ========
+##Tutorials 
+========
+[Guide to building Platform Games](http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/)
 [Platform Game part I  ](http://www.wildbunny.co.uk/blog/2011/12/11/how-to-make-a-2d-platform-game-part-1/)
 [Platform Game part II ](http://www.wildbunny.co.uk/blog/2011/12/14/how-to-make-a-2d-platform-game-part-2-collision-detection/)
 [Platform Game part III](http://www.wildbunny.co.uk/blog/2011/12/20/how-to-make-a-2d-platform-game-part-3-ladders-and-ai/)
+
+## Links 
+========
+[OpenSource Art](http://opengameart.org/)
 
 ## Version History 
 |Date |Author|Version|Reason|
@@ -20,3 +27,5 @@ I will do this in C++
 |2016-05-29|Denis Jackman|01.00|Original Version |
 
 ## TODO
+* Source some art for the game 
+* resource some methods of working 
