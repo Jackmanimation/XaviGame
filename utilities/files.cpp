@@ -1,3 +1,16 @@
+/*
+Name        :   files.cpp
+Author      :   Denis Jackman
+Date        :   27/06/2016
+Version     :   1:00:00
+Function    :   This snippet reads all the files from a directory and prints out the file names
+Compile     :   g++ files.cpp -w -o files
+
+Change History
+Name        :   Date        :   Version :   Reason
+D Jackman   :   27/06/2016  :   1:00:00 :   Original Version
+*/
+
 #include <stdio.h>
 #include <dirent.h>
 #include <string.h>

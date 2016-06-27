@@ -1,3 +1,18 @@
+/*
+Name        :   utilities.cpp
+Author      :   Denis Jackman
+Date        :   27/06/2016
+Version     :   1:00:00
+Function    :   This is a catch all utility to play with sprites for XaviGame
+Compile     :   make
+                g++ ../../game/include/general.cpp ../../game/include/SDLEngine.cpp ../../game/include/gamefunction.cpp utility.cpp -w -std=gnu++0x -I/usr/local/include -L/usr/local/lib  -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -o utility
+
+Change History
+Name        :   Date        :   Version :   Reason
+D Jackman   :   27/06/2016  :   1:00:00 :   Original Version
+
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
