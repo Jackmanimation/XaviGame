@@ -1,0 +1,9 @@
+Name                            width   height  number
+ballguy.png                     448     34      28 wide 1 deep
+Coins.png                       288     180     8 wide  5 deep
+heart.png                       64      64      1 wide  1 deep
+items.png                       176     112     4 wide  3 deep (varies)
+Old Enemies.png                 144     144     6 wide  4 deep
+TileToon1.png                   793     489     7 wide  4 deep
+voodoo_cactus_island.png        2048    1536    Background
+voodoo_cactus_underwater.png    2048    1536    Background

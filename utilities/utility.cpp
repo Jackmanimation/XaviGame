@@ -30,27 +30,34 @@ D Jackman   :   27/06/2016  :   1:00:00 :   Original Version
 
 using namespace std;
 
-SDL_Surface*    temp        =   NULL;
-SDL_Texture*    source      =   NULL;
-SDL_Texture*    dummy       =   NULL;
 
 int main (int argc, char* args[] )
 {
-    SCREEN_WIDTH        = 640;
-    SCREEN_HEIGHT       = 480;
+    SCREEN_WIDTH        = 1024;
+    SCREEN_HEIGHT       = 768;
     SCREEN_TITLE        = "XaviGame Utility";
     PROGRAM_TIMER       = 2000;
     VERSION             = "V1.00.00";
     NAME_PROGRAM        = "XaviGame Utility";
     MEDIAFILE           = "../assets/ballguy.png";
+    string CoinFile     = "../assets/Coins.png";
+
     int SPEED           = 25;
     int w;
     int h;
     bool utilLoop = true;
-    SDL_Rect sourceRect;
-    SDL_Rect screenRect;
-    SDL_Rect dummyRect;
-    SDL_Rect dummyDisplay;
+
+    SDL_Surface*    temp        =   NULL;
+    SDL_Texture*    source      =   NULL;
+    SDL_Texture*    coins       =   NULL;
+    SDL_Texture*    back        =   NULL;
+
+    SDL_Rect        sourceRect;
+    SDL_Rect        coinRect;
+    SDL_Rect        screenRect;
+    SDL_Rect        dummyDisplay;
+    SDL_Rect        adummyDisplay;
+    SDL_Rect        coinDisplay;
 
     Print("Starting Utility Program ");
     if (GameInitialise() == false)
@@ -59,12 +66,21 @@ int main (int argc, char* args[] )
     }
 
     source = loadTexture(MEDIAFILE);
-    dummy = source;
+    coins = loadTexture(CoinFile);
+    back = loadTexture("../assets/voodoo_cactus_island.png");
+
+    coinRect.x = 0;
+    coinRect.y = 0;
+    coinRect.w = 288;
+    coinRect.h = 180;
+
+    coinDisplay.x = 10;
+    coinDisplay.y = 10;
+    coinDisplay.w = 288;
+    coinDisplay.h = 180;
+
     SDL_QueryTexture(source, NULL, NULL, &w, &h);
-    Print("Ballguy");
-    Print("Width  : " + to_string(w));
-    Print("Height : " + to_string(h));
-    Print("Sprites: " + to_string(w/28));
+
     sourceRect.x = 0;
     sourceRect.y = 0;
     sourceRect.w = 16;
@@ -76,6 +92,12 @@ int main (int argc, char* args[] )
     screenRect.h = h*4;
 
 
+
+    adummyDisplay.x = SCREEN_WIDTH / 4;
+    adummyDisplay.y = 50 ;
+    adummyDisplay.w = 16;
+    adummyDisplay.h = h;
+
     dummyDisplay.x = SCREEN_WIDTH / 2;
     dummyDisplay.y = 50 ;
     dummyDisplay.w = 32;
@@ -85,7 +107,7 @@ int main (int argc, char* args[] )
     while(utilLoop)
     {
         Uint32 ticks = SDL_GetTicks();
-        Uint32 sprite = (ticks / SPEED) % 16;
+        Uint32 sprite = (ticks / SPEED) % 28;
 
         sourceRect.x = sprite * 16 ;
         sourceRect.y = 0;
@@ -96,13 +118,9 @@ int main (int argc, char* args[] )
         {
             screenRect.x = 0;
         }
-        dummyRect.x = sourceRect.x ;
-        dummyRect.y = sourceRect.y ;
-        dummyRect.w = sourceRect.w ;
-        dummyRect.h = sourceRect.h ;
+
         while ( SDL_PollEvent(&gameEvent ) != 0 )
 		{
-
 
 		    //User requests quit
 			if ( gameEvent.type == SDL_QUIT)
@@ -112,8 +130,12 @@ int main (int argc, char* args[] )
 		}
 		//Clear screen
 		ClearScreen(White);
+        SDL_RenderCopy( gRenderer, back, NULL, NULL);
+		SDL_RenderCopy( gRenderer, coins , &coinRect, &coinDisplay );
 		SDL_RenderCopy( gRenderer, source , &sourceRect, &screenRect );
-		SDL_RenderCopy( gRenderer, dummy , &dummyRect, &dummyDisplay );
+		SDL_RenderCopy( gRenderer, source , &sourceRect, &dummyDisplay );
+		SDL_RenderCopy( gRenderer, source , &sourceRect, &adummyDisplay );
+
 		//Render texture to screen
 		SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
 		//Update screen
