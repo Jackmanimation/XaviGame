@@ -57,8 +57,8 @@ int main (int argc, char* args[] )
 
     screenRect.x = 0;
     screenRect.y = SCREEN_HEIGHT / 2 ;
-    screenRect.w = 32;
-    screenRect.h = h*2;
+    screenRect.w = 64;
+    screenRect.h = h*4;
 
 
     dummyDisplay.x = SCREEN_WIDTH / 2;
@@ -77,7 +77,7 @@ int main (int argc, char* args[] )
         sourceRect.w = 16;
         sourceRect.h = h;
         screenRect.x++;
-        if (screenRect.x > (SCREEN_WIDTH-32))
+        if (screenRect.x > (SCREEN_WIDTH-64))
         {
             screenRect.x = 0;
         }
