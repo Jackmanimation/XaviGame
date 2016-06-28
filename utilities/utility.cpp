@@ -51,6 +51,9 @@ int main (int argc, char* args[] )
     SDL_Texture*    source      =   NULL;
     SDL_Texture*    coins       =   NULL;
     SDL_Texture*    back        =   NULL;
+    SDL_Texture*    mask        =   NULL;
+    SDL_Texture*    heart       =   NULL;
+    SDL_Texture*    enemies     =   NULL;
 
     SDL_Rect        sourceRect;
     SDL_Rect        coinRect;
@@ -58,16 +61,59 @@ int main (int argc, char* args[] )
     SDL_Rect        dummyDisplay;
     SDL_Rect        adummyDisplay;
     SDL_Rect        coinDisplay;
+    SDL_Rect        maskRect;
+    SDL_Rect        maskDisplay;
+    SDL_Rect        heartRect;
+    SDL_Rect        heartDisplay;
+    SDL_Rect        enemiesRect;
+    SDL_Rect        enemiesDisplay;
 
     Print("Starting Utility Program ");
     if (GameInitialise() == false)
     {
         Print("Game failed to initialise !");
     }
+    customcolour enemiesCol;
+    enemiesCol.red = 157;
+    enemiesCol.green = 142;
+    enemiesCol.blue = 135;
 
     source = loadTexture(MEDIAFILE);
-    coins = loadTexture(CoinFile);
+    //coins = loadTexture(CoinFile);
     back = loadTexture("../assets/voodoo_cactus_island.png");
+    mask = loadTexture("../files/GuyFawkes.png");
+    heart = loadTexture("../assets/heart.png");
+    enemies = loadTexture("../assets/Oldenemies.png", true, enemiesCol );
+
+    enemiesRect.x = 17;
+    enemiesRect.y = 16;
+    enemiesRect.w = 16;
+    enemiesRect.h = 16;
+
+    enemiesDisplay.x = 50;
+    enemiesDisplay.y = 50;
+    enemiesDisplay.w = 64;
+    enemiesDisplay.h = 64;
+
+    heartRect.x = 0;
+    heartRect.y = 0;
+    heartRect.w = 32;
+    heartRect.h = 32;
+
+    heartDisplay.x = 300;
+    heartDisplay.y = 50;
+    heartDisplay.w = 64;
+    heartDisplay.h = 64;
+
+    maskRect.x = 0;
+    maskRect.y = 0;
+    maskRect.w = 300;
+    maskRect.h = 300;
+
+    maskDisplay.x = 600;
+    maskDisplay.y = 50;
+    maskDisplay.w = 64;
+    maskDisplay.h = 64;
 
     coinRect.x = 0;
     coinRect.y = 0;
@@ -90,8 +136,6 @@ int main (int argc, char* args[] )
     screenRect.y = SCREEN_HEIGHT / 2 ;
     screenRect.w = 64;
     screenRect.h = h*4;
-
-
 
     adummyDisplay.x = SCREEN_WIDTH / 4;
     adummyDisplay.y = 50 ;
@@ -130,11 +174,15 @@ int main (int argc, char* args[] )
 		}
 		//Clear screen
 		ClearScreen(White);
+
         SDL_RenderCopy( gRenderer, back, NULL, NULL);
-		SDL_RenderCopy( gRenderer, coins , &coinRect, &coinDisplay );
+		//SDL_RenderCopy( gRenderer, coins , &coinRect, &coinDisplay );
+		SDL_RenderCopy( gRenderer, heart, &heartRect, &heartDisplay);
+		SDL_RenderCopy( gRenderer, mask , &maskRect, &maskDisplay );
 		SDL_RenderCopy( gRenderer, source , &sourceRect, &screenRect );
-		SDL_RenderCopy( gRenderer, source , &sourceRect, &dummyDisplay );
-		SDL_RenderCopy( gRenderer, source , &sourceRect, &adummyDisplay );
+		SDL_RenderCopy( gRenderer, enemies , &enemiesRect, &enemiesDisplay );
+		//SDL_RenderCopy( gRenderer, source , &sourceRect, &dummyDisplay );
+		//SDL_RenderCopy( gRenderer, source , &sourceRect, &adummyDisplay );
 
 		//Render texture to screen
 		SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
