@@ -83,9 +83,9 @@ int main (int argc, char* args[] )
     back = loadTexture("../assets/voodoo_cactus_island.png");
     mask = loadTexture("../files/GuyFawkes.png");
     heart = loadTexture("../assets/heart.png");
-    enemies = loadTexture("../assets/Oldenemies.png", true, enemiesCol );
+    enemies = loadTexture("../assets/Old enemies.png");
 
-    enemiesRect.x = 17;
+    enemiesRect.x = 16;
     enemiesRect.y = 16;
     enemiesRect.w = 16;
     enemiesRect.h = 16;
@@ -152,11 +152,17 @@ int main (int argc, char* args[] )
     {
         Uint32 ticks = SDL_GetTicks();
         Uint32 sprite = (ticks / SPEED) % 28;
-
+        Uint32 esprite = (ticks / (SPEED * 6) ) % 6;
         sourceRect.x = sprite * 16 ;
         sourceRect.y = 0;
         sourceRect.w = 16;
         sourceRect.h = h;
+
+        enemiesRect.x = 16 +(esprite * 16);
+        enemiesRect.y = 16;
+        enemiesRect.w = 16;
+        enemiesRect.h = 16;
+
         screenRect.x++;
         if (screenRect.x > (SCREEN_WIDTH-64))
         {

@@ -1,0 +1,11 @@
+Creating a transparent background
+
+to make an image have a colour as transparent.
+1. Load the image into gimp.
+2. Use the "fuzzy select tool" to select a region
+3. select colours->color to alpha and click ok.
+4. select the eraser tool and erase the background colour
+
+Library Variables
+
+'sdl2-config --static-libs' gives us the library variables.
