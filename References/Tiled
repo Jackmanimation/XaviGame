@@ -1,0 +1,151 @@
+Hello, I realized while working on a project of mine that DarkGDK has really no productive way to create orthographic or isometric maps or load them.
+
+The samples that come with DarkGDK show you how to create a map using an array, but that is not a very productive or flexible way to create maps. Here ill show you how to load a map from an XML file in one function!
+
+However, this will not show you how to paste all the tiles to the screen and render a complete map. Because I don't know how yet lol. So if you have any input please let me know!
+
+So lets get down to what we need first:
+Latest Java Runtime Environment: https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jre-6u12-oth-JPR@CDS-CDS_Developer
+Tiled 0.7.2: http://www.mapeditor.org/files/tiled-0.7.2-bin.zip
+TinyXML: http://downloads.sourceforge.net/tinyxml/tinyxml_2_5_3.zip?use_mirror=superb-east
+
+Once everything is downloaded preform the following steps:
+1. Install the JRE package.
+2. Extract Tiled and double click Tiled.jar
+3. Extract TinyXML, open the solution and press F7. Open the Debug folder once its done compiling successfully and make sure you include this directory in your DarkGDK project.
+
+Now we need a completed Tiled map to work with, I will not cover how to use it here, but an excellent tutorial can be found here:
+http://silveiraneto.net/2009/01/11/game-map-edition-using-tiled/
+
+Now lets get to some source. Create the following source files and paste in their contents.
+
+XML.h
++ Code Snippet
+//----------------------------------------------------------------
+//     _____            __    _ ____
+//    / ___/__  _______/ /_  (_) __ )____  _  __
+//    \__ \/ / / / ___/ __ \/ / __  / __ \| |/_/
+//   ___/ / /_/ (__  ) / / / / /_/ / /_/ />  <
+//  /____/\__,_/____/_/ /_/_/_____/\____//_/|_\
+//
+// Copyright 2009 SushiBox Studios
+// By Dylan Marsh - Crank@SushiBoxStudios.com
+//----------------------------------------------------------------
+
+#pragma once
+
+class XML
+{
+    public:
+        bool LoadMap ( const char* FileName );
+};
+
+
+XML.cpp
++ Code Snippet
+//----------------------------------------------------------------
+//     _____            __    _ ____
+//    / ___/__  _______/ /_  (_) __ )____  _  __
+//    \__ \/ / / / ___/ __ \/ / __  / __ \| |/_/
+//   ___/ / /_/ (__  ) / / / / /_/ / /_/ />  <
+//  /____/\__,_/____/_/ /_/_/_____/\____//_/|_\
+//
+// Copyright 2009 SushiBox Studios
+// By Dylan Marsh - Crank@SushiBoxStudios.com
+//----------------------------------------------------------------
+// Custom XML Tiled Map Loader
+// 3/8/2009 - 10:19 PM
+// -------------------------------------------------------------|
+
+#include "XML.h" // Include our class
+#include "tinyxml.h" // Include the TinyXML header
+
+// This function will return if the file loaded properly
+// You can do error reporting here or where the function is declared
+bool XML::LoadMap ( const char* FileName )
+{
+    // Load our XML Document
+    TiXmlDocument doc ( FileName );
+    bool loadOkay = doc.LoadFile();
+
+    // Check if everything loaded okay
+    if ( loadOkay )
+    {
+        int MapX = 30; // Map Width in Tiled
+        int MapY = 23; // Map Height in Tiled
+
+        int TileCount = MapX * MapY;
+
+        TiXmlNode* rootnode;
+        TiXmlNode* node;
+        const char* MapVer;
+        const char* LayerName;
+        const char* GroundTileID [691]; // Make sure this is set to the value of TileCount + 1
+
+        rootnode = doc.FirstChildElement ( "map" ); // Get Root Node
+
+        if ( rootnode ) {
+            node = rootnode->FirstChildElement ( "version" );
+
+        if ( node ) {
+            MapVer = rootnode->ToElement()->Attribute("version"); // Store the map version
+
+        if ( node ){
+            node = rootnode->FirstChildElement ( "layer" );
+
+        if ( node ) {
+            node = rootnode->FirstChildElement ( "name" );
+
+        if ( node ) {
+            LayerName = rootnode->ToElement()->Attribute("name"); // Store the layer name
+
+        if ( node ) {
+            node = rootnode->FirstChildElement ( "data" );
+
+        if ( node ) {
+            node = rootnode->FirstChildElement ( "tile" );
+
+        for ( int i = 1; i <= TileCount; i++ ) {
+            if ( node ) {
+                node = rootnode->FirstChildElement ( "ID" );
+
+            if ( node ) {
+                GroundTileID[i] = rootnode->ToElement()->Attribute("ID"); // Store all Tile ID's
+
+            }}}}}}}}}} // Sorry for this, looks ugly ha ha
+
+        return true;
+    }
+
+    else // The XML document returned errors or does not exist
+    {
+        // TODO: Add some type of error handling here
+        return false;
+    }
+}
+
+
+Example XML
++ Code Snippet
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Training Island 1 -->
+<map version="1.0">
+ <layer name="Ground">
+  <data>
+   <tile ID="1"/>
+   <tile ID="1"/>
+   <tile ID="1"/>
+   <tile ID="1"/>
+   etc etc etc...
+  </data>
+ </layer>
+</map>
+
+
+Now that we have to code, and see the example XML file, lets see how we get from Tiled to our custom minimalistic map format. Once your done creating your map in Tiled save your map as a .tmx file (the default Tiled format). Go ahead and open it in notepad and make the necessary changes to the file to match my custom format. This will trim out all the unnecessary nodes.
+
+I am currently working on a Tiled plug in that will automatically export the maps in this proper format, so I will release it here as soon as I am finished.
+
+I haven't had a chance to test this full and i'm sure it can be improved. If you notice something that needs fixed or you find a bug please post it here and ill be more than great full and ill change it asap.
+
+Hope this helps and provides a big building block to integrating the Tiled map editor into your DarkGDK game, or any C++ application!
