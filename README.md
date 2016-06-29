@@ -16,6 +16,15 @@ I will do this in C++
 [Platform Game part I  ](http://www.wildbunny.co.uk/blog/2011/12/11/how-to-make-a-2d-platform-game-part-1/)
 [Platform Game part II ](http://www.wildbunny.co.uk/blog/2011/12/14/how-to-make-a-2d-platform-game-part-2-collision-detection/)
 [Platform Game part III](http://www.wildbunny.co.uk/blog/2011/12/20/how-to-make-a-2d-platform-game-part-3-ladders-and-ai/)
+[More Platform Game Stuff](http://www.gamedev.net/page/resources/_/technical/game-programming/the-guide-to-implementing-2d-platformers-r2936)
+[Super Koalio](https://www.raywenderlich.com/15230/how-to-make-a-platform-game-like-super-mario-brothers-part-1)
+[Tiled Loader](http://usefulgamedev.weebly.com/c-tiled-map-loader.html)
+
+##Tools 
+========
+[TileEd](http://www.mapeditor.org/)
+[tinyxml](http://www.grinninglizard.com/tinyxml/)
+
 
 ## Links 
 ========
