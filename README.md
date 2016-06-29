@@ -25,7 +25,10 @@ I will do this in C++
 |Date |Author|Version|Reason|
 |----------|-------------|-----|--------------------------------------|
 |2016-05-29|Denis Jackman|01.00|Original Version |
+|2016-06-29|Denis Jackman|01.01|Added in utilities for sprite play |
 
 ## TODO
-* Source some art for the game 
-* resource some methods of working 
+* Source some art for the game - Done 
+* resource some methods of working - on going 
+* How do game tiles work
+* Turn the sprite play into a class or functions (or both)
