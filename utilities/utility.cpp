@@ -16,6 +16,8 @@ D Jackman   :   27/06/2016  :   1:00:00 :   Original Version
 #include <iostream>
 #include <string>
 #include <vector>
+#include<ctime>
+#include<cstdlib>
 
 // Game Library headers
 #include <SDL2/SDL.h>
@@ -29,7 +31,6 @@ D Jackman   :   27/06/2016  :   1:00:00 :   Original Version
 #include "../../game/include/SDLEngine.h"
 
 using namespace std;
-
 
 int main (int argc, char* args[] )
 {
@@ -48,12 +49,15 @@ int main (int argc, char* args[] )
     bool utilLoop = true;
 
     SDL_Surface*    temp        =   NULL;
+
     SDL_Texture*    source      =   NULL;
     SDL_Texture*    coins       =   NULL;
     SDL_Texture*    back        =   NULL;
     SDL_Texture*    mask        =   NULL;
     SDL_Texture*    heart       =   NULL;
     SDL_Texture*    enemies     =   NULL;
+    SDL_Texture*    fontTexture =   NULL;
+
 
     SDL_Rect        sourceRect;
     SDL_Rect        coinRect;
@@ -67,19 +71,16 @@ int main (int argc, char* args[] )
     SDL_Rect        heartDisplay;
     SDL_Rect        enemiesRect;
     SDL_Rect        enemiesDisplay;
+    SDL_Rect        fontRect;
 
     Print("Starting Utility Program ");
     if (GameInitialise() == false)
     {
         Print("Game failed to initialise !");
     }
-    customcolour enemiesCol;
-    enemiesCol.red = 157;
-    enemiesCol.green = 142;
-    enemiesCol.blue = 135;
+
 
     source = loadTexture(MEDIAFILE);
-    //coins = loadTexture(CoinFile);
     back = loadTexture("../assets/voodoo_cactus_island.png");
     mask = loadTexture("../files/GuyFawkes.png");
     heart = loadTexture("../assets/heart.png");
@@ -148,8 +149,17 @@ int main (int argc, char* args[] )
     dummyDisplay.h = h*2;
 
     SDL_Event gameEvent;
+
+    srand(time(0));
+
     while(utilLoop)
     {
+
+        fontTexture = LoadFont("OpenSans-Regular.ttf",NAME_PROGRAM,colourlist[rand() % 151 + 1 ]);
+	    SDL_QueryTexture( fontTexture, NULL, NULL, &fontRect.w, &fontRect.h );
+	    fontRect.x = (SCREEN_WIDTH/2)-(fontRect.w/2);
+	    fontRect.y = 20;
+
         Uint32 ticks = SDL_GetTicks();
         Uint32 sprite = (ticks / SPEED) % 28;
         Uint32 esprite = (ticks / (SPEED * 6) ) % 6;
@@ -182,6 +192,8 @@ int main (int argc, char* args[] )
 		ClearScreen(White);
 
         SDL_RenderCopy( gRenderer, back, NULL, NULL);
+        SDL_RenderCopy( gRenderer, fontTexture, NULL, &fontRect);
+
 		//SDL_RenderCopy( gRenderer, coins , &coinRect, &coinDisplay );
 		SDL_RenderCopy( gRenderer, heart, &heartRect, &heartDisplay);
 		SDL_RenderCopy( gRenderer, mask , &maskRect, &maskDisplay );
@@ -196,6 +208,9 @@ int main (int argc, char* args[] )
 		SDL_RenderPresent( gRenderer );
     }
   	SDL_DestroyTexture( source );
+
+    TTF_Quit();
 	GameTerminate();
     Print("Finishing Utility Program ");
 }
+
