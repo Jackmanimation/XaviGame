@@ -25,6 +25,8 @@ I will do this in C++
 ========
 * [TileEd](http://www.mapeditor.org/)
 * [tinyxml](http://www.grinninglizard.com/tinyxml/)
+* [Fonts](https://www.fontsquirrel.com)
+* [More Fonts](http://www.dafont.com/)
 
 ## Links 
 ========
