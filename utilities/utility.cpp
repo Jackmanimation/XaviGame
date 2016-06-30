@@ -48,12 +48,17 @@ int main (int argc, char* args[] )
     bool utilLoop = true;
 
     SDL_Surface*    temp        =   NULL;
+
     SDL_Texture*    source      =   NULL;
     SDL_Texture*    coins       =   NULL;
     SDL_Texture*    back        =   NULL;
     SDL_Texture*    mask        =   NULL;
     SDL_Texture*    heart       =   NULL;
     SDL_Texture*    enemies     =   NULL;
+    SDL_Texture*    fontTexture =   NULL;
+
+    TTF_Font*       Font;
+    SDL_Color       textColor = { 0, 0, 0, 255 }; // black
 
     SDL_Rect        sourceRect;
     SDL_Rect        coinRect;
@@ -67,12 +72,16 @@ int main (int argc, char* args[] )
     SDL_Rect        heartDisplay;
     SDL_Rect        enemiesRect;
     SDL_Rect        enemiesDisplay;
+    SDL_Rect        fontRect;
 
     Print("Starting Utility Program ");
     if (GameInitialise() == false)
     {
         Print("Game failed to initialise !");
     }
+    Font = TTF_OpenFont("OpenSans-Regular.ttf",40);
+
+
     customcolour enemiesCol;
     enemiesCol.red = 157;
     enemiesCol.green = 142;
@@ -148,6 +157,15 @@ int main (int argc, char* args[] )
     dummyDisplay.h = h*2;
 
     SDL_Event gameEvent;
+
+    // Font work
+  	temp = TTF_RenderText_Solid( Font, NAME_PROGRAM, textColor );
+	fontTexture = SDL_CreateTextureFromSurface( gRenderer, temp );
+	SDL_QueryTexture( fontTexture, NULL, NULL, &fontRect.w, &fontRect.h );
+	fontRect.x = SCREEN_WIDTH/2;
+	fontRect.y = 20;
+    SDL_FreeSurface( temp);
+
     while(utilLoop)
     {
         Uint32 ticks = SDL_GetTicks();
@@ -182,6 +200,8 @@ int main (int argc, char* args[] )
 		ClearScreen(White);
 
         SDL_RenderCopy( gRenderer, back, NULL, NULL);
+        SDL_RenderCopy( gRenderer, fontTexture, NULL, &fontRect);
+
 		//SDL_RenderCopy( gRenderer, coins , &coinRect, &coinDisplay );
 		SDL_RenderCopy( gRenderer, heart, &heartRect, &heartDisplay);
 		SDL_RenderCopy( gRenderer, mask , &maskRect, &maskDisplay );
@@ -196,6 +216,8 @@ int main (int argc, char* args[] )
 		SDL_RenderPresent( gRenderer );
     }
   	SDL_DestroyTexture( source );
+    TTF_CloseFont( Font );
+    TTF_Quit();
 	GameTerminate();
     Print("Finishing Utility Program ");
 }
