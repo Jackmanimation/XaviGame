@@ -155,7 +155,7 @@ int main (int argc, char* args[] )
     while(utilLoop)
     {
 
-        fontTexture = LoadFont("../fonts/Courier Prime Code.ttf",NAME_PROGRAM,colourlist[rand() % 151 + 1 ]);
+        fontTexture = LoadFont("../fonts/Demolition Crack.ttf","XAVIGAME UTILITY",colourlist[rand() % 151 + 1 ],40);
 	    SDL_QueryTexture( fontTexture, NULL, NULL, &fontRect.w, &fontRect.h );
 	    fontRect.x = (SCREEN_WIDTH/2)-(fontRect.w/2);
 	    fontRect.y = 20;
