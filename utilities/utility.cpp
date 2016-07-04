@@ -193,14 +193,10 @@ int main (int argc, char* args[] )
 
         SDL_RenderCopy( gRenderer, back, NULL, NULL);
         SDL_RenderCopy( gRenderer, fontTexture, NULL, &fontRect);
-
-		//SDL_RenderCopy( gRenderer, coins , &coinRect, &coinDisplay );
 		SDL_RenderCopy( gRenderer, heart, &heartRect, &heartDisplay);
 		SDL_RenderCopy( gRenderer, mask , &maskRect, &maskDisplay );
 		SDL_RenderCopy( gRenderer, source , &sourceRect, &screenRect );
 		SDL_RenderCopy( gRenderer, enemies , &enemiesRect, &enemiesDisplay );
-		//SDL_RenderCopy( gRenderer, source , &sourceRect, &dummyDisplay );
-		//SDL_RenderCopy( gRenderer, source , &sourceRect, &adummyDisplay );
 
 		//Render texture to screen
 		SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
