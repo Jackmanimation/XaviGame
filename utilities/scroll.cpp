@@ -81,6 +81,27 @@ int main (int argc, char* args[] )
     display_middle_rect2.y = 0;
     display_middle_rect2.w = SCREEN_WIDTH;
     display_middle_rect2.h = SCREEN_HEIGHT;
+    
+    front_rect1.x = 0;
+    front_rect1.y = 0;
+    front_rect1.w = SCREEN_WIDTH;
+    front_rect1.h = SCREEN_HEIGHT;
+
+    front_rect2.x = 0;
+    front_rect2.y = 0;
+    front_rect2.w = SCREEN_WIDTH;
+    front_rect2.h = SCREEN_HEIGHT;
+
+    display_front_rect1.x = 0;
+    display_front_rect1.y = 0;
+    display_front_rect1.w = SCREEN_WIDTH;
+    display_front_rect1.h = SCREEN_HEIGHT;
+
+    display_front_rect2.x = 0;
+    display_front_rect2.y = 0;
+    display_front_rect2.w = SCREEN_WIDTH;
+    display_front_rect2.h = SCREEN_HEIGHT;
+    
 
     SDL_Event       gameEvent;
 
@@ -97,8 +118,8 @@ int main (int argc, char* args[] )
     while(utilLoop)
     {
 
-        middle_scroll_width += 2;
-        if (middle_scroll_width > 481)
+        middle_scroll_width += 1;
+        if (middle_scroll_width > 641)
         {
             middle_scroll_width = 0;
         }
@@ -114,8 +135,8 @@ int main (int argc, char* args[] )
         display_middle_rect2.x = 0;
         display_middle_rect2.w = SCREEN_WIDTH - middle_scroll_width;
 
-        front_scroll_width += 4;
-        if (front_scroll_width > 480)
+        front_scroll_width += 2;
+        if (front_scroll_width > 641)
         {
             front_scroll_width = 0;
         }
@@ -149,9 +170,9 @@ int main (int argc, char* args[] )
         SDL_RenderCopy( gRenderer, middle, &middle_rect1, &display_middle_rect1);
         SDL_RenderCopy( gRenderer, middle, &middle_rect2, &display_middle_rect2);
 
-        SDL_RenderCopy( gRenderer, front, NULL, NULL);
-        //SDL_RenderCopy( gRenderer, front, &front_rect1, &display_front_rect1);
-        //SDL_RenderCopy( gRenderer, front, &front_rect2, &display_front_rect2);
+        //SDL_RenderCopy( gRenderer, front, NULL, NULL);
+        SDL_RenderCopy( gRenderer, front, &front_rect1, &display_front_rect1);
+        SDL_RenderCopy( gRenderer, front, &front_rect2, &display_front_rect2);
 
 		//Update screen
 		SDL_RenderPresent( gRenderer );
