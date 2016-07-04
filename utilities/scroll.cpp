@@ -102,7 +102,6 @@ int main (int argc, char* args[] )
     display_front_rect2.w = SCREEN_WIDTH;
     display_front_rect2.h = SCREEN_HEIGHT;
     
-
     SDL_Event       gameEvent;
 
     Print("Starting "+string(NAME_PROGRAM)+" Program ");
@@ -119,7 +118,7 @@ int main (int argc, char* args[] )
     {
 
         middle_scroll_width += 1;
-        if (middle_scroll_width > 641)
+        if (middle_scroll_width > SCREEN_WIDTH)
         {
             middle_scroll_width = 0;
         }
@@ -136,7 +135,7 @@ int main (int argc, char* args[] )
         display_middle_rect2.w = SCREEN_WIDTH - middle_scroll_width;
 
         front_scroll_width += 2;
-        if (front_scroll_width > 641)
+        if (front_scroll_width > SCREEN_WIDTH)
         {
             front_scroll_width = 0;
         }
@@ -152,6 +151,7 @@ int main (int argc, char* args[] )
         display_front_rect2.x = 0;
         display_front_rect2.w = SCREEN_WIDTH - front_scroll_width;
 
+        // Get input from the keyboard
         while ( SDL_PollEvent(&gameEvent ) != 0 )
 		{
 
@@ -161,18 +161,30 @@ int main (int argc, char* args[] )
 			    utilLoop = false;
 		    }
 		}
-		//Clear screen
-		ClearScreen(White);
 
         // render the textures to the screen
-        SDL_RenderCopy( gRenderer, back, NULL, NULL);
+		// Clear screen
+		ClearScreen(White);
 
+        // Background
+        // Layer 1 (Background)
+        SDL_RenderCopy( gRenderer, back, NULL, NULL);
+        // Layer 2 (Middle)
         SDL_RenderCopy( gRenderer, middle, &middle_rect1, &display_middle_rect1);
         SDL_RenderCopy( gRenderer, middle, &middle_rect2, &display_middle_rect2);
-
-        //SDL_RenderCopy( gRenderer, front, NULL, NULL);
+        // Layer 3 (Front)
         SDL_RenderCopy( gRenderer, front, &front_rect1, &display_front_rect1);
         SDL_RenderCopy( gRenderer, front, &front_rect2, &display_front_rect2);
+
+        // NPC Objects
+        // Not implemented yet
+        // TODO: Implement NPC Rendering
+        // SDL_RenderCopy( gRenderer, npc, &npc_rect, &display_npc_rect);
+
+        // Player Objects
+        // Not implemented yet
+        // TODO: Implement Player Object Rendering
+        // SDL_RenderCopy( gRenderer, player, &player_rect, &display_player_rect);
 
 		//Update screen
 		SDL_RenderPresent( gRenderer );
