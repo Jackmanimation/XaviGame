@@ -101,7 +101,7 @@ int main (int argc, char* args[] )
     display_front_rect2.y = 0;
     display_front_rect2.w = SCREEN_WIDTH;
     display_front_rect2.h = SCREEN_HEIGHT;
-    
+
     SDL_Event       gameEvent;
 
     Print("Starting "+string(NAME_PROGRAM)+" Program ");
