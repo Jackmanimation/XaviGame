@@ -1,5 +1,6 @@
 #OBJS specifies which files to compile as part of the project
 OBJS = ../../game/include/general.cpp ../../game/include/SDLEngine.cpp ../../game/include/gamefunction.cpp utility.cpp
+SCROLL_OBJS = ../../game/include/general.cpp ../../game/include/SDLEngine.cpp ../../game/include/gamefunction.cpp scroll.cpp
 FILE_OBJS = files.cpp
 
 #CC specifies which compiler we're using
@@ -16,6 +17,7 @@ FILE_LINKER_FLAG =
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = utility
 FILE_OBJ_NAME = files
+SCROLL_OBJ_NAME = scroll
 
 #This is the target that compiles our executable
 all : $(OBJS)
@@ -24,3 +26,5 @@ all : $(OBJS)
 file : $(FILE_OBJS)
 	$(CC) $(FILE_OBJS) $(COMPILER_FLAGS) $(FILE_LINKER_FLAGS) -o $(FILE_OBJ_NAME)
 
+scroll : $(SCROLL_OBJS)
+	$(CC) $(SCROLL_OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(SCROLL_OBJ_NAME)

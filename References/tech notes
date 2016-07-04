@@ -1,4 +1,4 @@
-Creating a transparent background
+## Creating a transparent background
 
 to make an image have a colour as transparent.
 1. Load the image into gimp.
@@ -6,6 +6,11 @@ to make an image have a colour as transparent.
 3. select colours->color to alpha and click ok.
 4. select the eraser tool and erase the background colour
 
-Library Variables
-
+## Library Variables
 'sdl2-config --static-libs' gives us the library variables.
+
+* [Parallax Scrolling](https://en.wikipedia.org/wiki/Parallax_scrolling)
+* [Parallax Scrolling](http://gamedevelopment.tutsplus.com/tutorials/parallax-scrolling-a-simple-effective-way-to-add-depth-to-a-2d-game--cms-21510)
+* [Parallax Scrolling](http://www.giantbomb.com/parallax-scrolling/3015-2915/)
+* [Parallax Scrolling](https://katyscode.wordpress.com/2013/01/21/2d-platform-games-part-3-scrolling-and-parallax-backgrounds/)
+
