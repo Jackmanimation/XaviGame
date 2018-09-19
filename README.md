@@ -17,8 +17,7 @@ I will do this in C++
 * [Tiled Loader](http://usefulgamedev.weebly.com/c-tiled-map-loader.html)
 * [Using Tiled](http://silveiraneto.net/2009/01/11/game-map-edition-using-tiled/)
 
-##   Tools 
-========
+## Tools 
 * [TileEd](http://www.mapeditor.org/)
 * [tinyxml](http://www.grinninglizard.com/tinyxml/)
 * [Fonts](https://www.fontsquirrel.com)
@@ -26,7 +25,6 @@ I will do this in C++
 * [Review Ninja](https://app.review.ninja/Jackmanimation/XaviGame/)
 
 ## Links 
-========
 * [OpenSource Art](http://opengameart.org/)
 
 ## Version History 
@@ -34,9 +32,9 @@ I will do this in C++
 |----------|-------------|-----|--------------------------------------|
 |2016-05-29|Denis Jackman|01.00|Original Version |
 |2016-06-29|Denis Jackman|01.01|Added in utilities for sprite play |
+|2018-09-19|Denis Jackman|01.02|Tidied the repo up |
 
 ## TODO
-* Source some art for the game - Done 
 * resource some methods of working - on going 
 * How do game tiles work
 * Turn the sprite play into a class or functions (or both)
